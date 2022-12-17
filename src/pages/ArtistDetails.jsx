@@ -9,6 +9,7 @@ const ArtistDetails = () => {
   const { id: artistId } = useParams();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data: artistData, isFetching: isFetchingArtistDetails, error } = useGetArtistDetailsQuery(artistId);
+  const topSongsData = (artistData?.data[0]?.views['top-songs']?.data);
 
   if (isFetchingArtistDetails) return <Loader title="Loading artist details..." />;
 
@@ -22,7 +23,8 @@ const ArtistDetails = () => {
       />
 
       <RelatedSongs
-        data={Object.values(artistData?.songs)}
+        title = 'Top Songs'
+        data={topSongsData}
         artistId={artistId}
         isPlaying={isPlaying}
         activeSong={activeSong}
