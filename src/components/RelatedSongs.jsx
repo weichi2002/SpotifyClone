@@ -26,3 +26,4 @@ const RelatedSongs = ({ title, data, artistId, isPlaying, activeSong, handlePaus
 };
 
 export default RelatedSongs;
+

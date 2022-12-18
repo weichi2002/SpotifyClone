@@ -107,6 +107,10 @@ const TopPlay = () => {
               >
                 <Link to={`/artists${artist?.artists[0].adamid}`}>
                   <img src={artist?.images?.background} alt="Name" className="rounded-full w-full object-cover" />
+                  <p className="mt-4 font-semibold text-sm text-white truncate">
+                    {artist?.subtitle}
+                  </p>
+
                 </Link>
               </SwiperSlide>
             ))}
