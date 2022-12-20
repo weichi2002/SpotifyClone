@@ -11,6 +11,15 @@ const ArtistDetails = () => {
   const { data: artistData, isFetching: isFetchingArtistDetails, error } = useGetArtistDetailsQuery(artistId);
   const topSongsData = (artistData?.data[0]?.views['top-songs']?.data);
 
+  const handlePauseClick = () => {
+    dispatch(playPause(false));
+  };
+
+  const handlePlayClick = (song, i) => {
+    dispatch(setActiveSong({ song, data, i }));
+    dispatch(playPause(true));
+  }
+
   if (isFetchingArtistDetails) return <Loader title="Loading artist details..." />;
 
   if (error) return <Error />;
@@ -23,7 +32,9 @@ const ArtistDetails = () => {
       />
 
       <RelatedSongs
-        title = 'Top Songs'
+        handlePauseClick={handlePauseClick}
+        handlePlay={() => handlePlayClick(song, i)}  
+        title = 'Top Songs'     
         data={topSongsData}
         artistId={artistId}
         isPlaying={isPlaying}

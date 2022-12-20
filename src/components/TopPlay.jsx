@@ -48,6 +48,7 @@ const TopPlay = () => {
   });
 
   const topPlays = data?.slice(0,5);
+  console.log("Top Plays: ", topPlays);
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -99,6 +100,7 @@ const TopPlay = () => {
             modules={[FreeMode]}
             className="mt-4"
           >
+            
             {topPlays?.slice(0,5).map((artist) => (
               <SwiperSlide
                 key={artist?.key}
@@ -110,8 +112,8 @@ const TopPlay = () => {
                   <p className="mt-4 font-semibold text-sm text-white truncate">
                     {artist?.subtitle}
                   </p>
-
                 </Link>
+                
               </SwiperSlide>
             ))}
 
